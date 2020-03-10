@@ -84,8 +84,9 @@ public class CardNfcAsyncTask extends AsyncTask<Void, Void, Object>{
     public final static String CARD_GOOGLE = EmvCardScheme.GOOGLE.toString();
     public final static String CARD_INTER_SWITCH = EmvCardScheme.INTER_SWITCH.toString();
 
-    private final static String NFC_A_TAG = "TAG: Tech [android.nfc.tech.IsoDep, android.nfc.tech.NfcA]";
-    private final static String NFC_B_TAG = "TAG: Tech [android.nfc.tech.IsoDep, android.nfc.tech.NfcB]";
+    private final static String NFC_A_TAG = "android.nfc.tech.IsoDep";
+    private final static String NFC_B_TAG = "android.nfc.tech.NfcA";
+    private final static String NFC_C_TAG = "android.nfc.tech.NfcB";
     private final String UNKNOWN_CARD_MESS =
             "===========================================================================\n\n"+
             "Hi! This library is not familiar with your credit card. \n " +
@@ -110,7 +111,7 @@ public class CardNfcAsyncTask extends AsyncTask<Void, Void, Object>{
         if (mTag != null) {
             mInterface = b.mInterface;
             try {
-                if (mTag.toString().equals(NFC_A_TAG) || mTag.toString().equals(NFC_B_TAG)) {
+                if (mTag.toString().contains(NFC_A_TAG) || mTag.toString().contains(NFC_B_TAG) || mTag.toString().contains(NFC_C_TAG)) {
                     execute();
                 } else {
                     if (!b.mFromStart) {
